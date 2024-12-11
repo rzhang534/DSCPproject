@@ -1,0 +1,58 @@
+---
+title: "Group 10 - Project Proposal"
+author: "Yifan Chen, Shumeng Fang, Rui Zhang, Shixin Zhang"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This proposal aims to predict total precipitation, maximum temperature, and minimum temperature by comparing multiple statistical methods. 
+
+#### Read Data
+```{r }
+cental_west <- read.csv('Data/central_west.csv')
+north <- read.csv('Data/north.csv')
+northeast <- read.csv('Data/northeast.csv')
+south <- read.csv('Data/south.csv')
+southeast <- read.csv('Data/southeast.csv')
+
+```
+#### Data Description
+
+The dataset contains 27 variables, and here we only present representative variables to illustrate the data format.
+
+
+| Variable          | Type       | Description                                                                 |
+|-------------------|    :------------:|--------------------------------------|
+|Precipitation|dbl|Amount of precipitation in millimetres (last hour)|
+|Pressure|dbl|Atmospheric pressure at station level (mb)|
+|AirTemp|dbl|Air temperature (instant) (°c)|
+|Humid|int|Relative humid (% instant)|
+|Latitude|dbl
+
+
+
+#### Methods
+
+
+1.Data Pre-processing
+
+  a. Data Imputation: Replace missing categorical values with the mode (most frequent value) of the observed values for that variable.
+  b. One-Hot Encoding for non-numeric variable.
+
+2.Statistical Methods
+
+  a. Linear Model: Use OLS to predict the total precipitation, max temperature and min temperature.
+  b. Lasso Regression: Enhance feature selection when doing prediction.
+  c. Random Forest: Improve prediction accuracy by constructing multiple decision trees and combining their predictions.
+  d. SARIMA: Use time series methods by capturing seasonal trend to forecast temperature.
+
+3.Parallel Computing
+
+  a. Since the dataset is already divided into five geographic subsets, we propose a parallel computing approach to build predictive models tailored to each region and find out the optimal models for each one.
+  b. When doing prediction, a new data point will first be assigned to its respective region, then the region-specific model will be applied for accurate forecasting.
+
+#### GitHub
+git clone https://github.com/rzhang534/DSCPproject.git

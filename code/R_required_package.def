@@ -1,0 +1,7 @@
+# This apptainer ".def" file is a recipe for building a container.
+
+Bootstrap: docker
+From: rocker/tidyverse:4.3.1
+
+%post
+    R -e "install.packages(c('forecast', 'randomForest', 'data.table', 'Metrics'), dependencies=TRUE, repos='http://cran.rstudio.com/')"
